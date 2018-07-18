@@ -11,7 +11,7 @@ public class TestaInsercao {
     public static void main(String[] args) throws SQLException {
 
         // Certifica-se que a conexão será aberta e fechada
-        try (Connection connection = Database.getConnection()) {
+        try (Connection connection = new ConnectionPool().getConnection()) {
 
             connection.setAutoCommit(false);
 
@@ -36,10 +36,9 @@ public class TestaInsercao {
 
     public static void adiciona(String nome, String descricao, PreparedStatement statement) throws SQLException {
 
-        if (nome.equals("Blueray")) {
-            throw new IllegalArgumentException();
-        }
-
+//        if (nome.equals("Blueray")) {
+//            throw new IllegalArgumentException();
+//        }
         statement.setString(1, nome);
         statement.setString(2, descricao);
 
